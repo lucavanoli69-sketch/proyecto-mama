@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda | CATALINA.</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CATALINA.</a>
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="shop.html" class="active">Tienda</a>
+                <div class="cart-icon-container" id="open-cart-btn">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-badge" class="cart-badge">0</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Shop Content -->
+    <main class="products-section">
+        <h1 class="page-title">Nueva Colección</h1>
+        
+        <!-- Categoría: Ropa -->
+        <section class="category-wrapper">
+            <h2 class="category-title">Ropa</h2>
+            <div class="products-grid" id="ropa-container">
+                <!-- Productos inyectados por js/main.js -->
+            </div>
+        </section>
+
+        <!-- Categoría: Accesorios -->
+        <section class="category-wrapper">
+            <h2 class="category-title">Accesorios</h2>
+            <div class="products-grid" id="accesorios-container">
+                <!-- Productos inyectados por js/main.js -->
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- 7. Footer Completo -->
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">CATALINA.</a>
+                <p>Elegancia y frescura para tu vida cotidiana.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="shop.html">Nuestra Tienda</a></li>
+                    <li><a href="#" id="open-cart-footer-2">Mi Carrito</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>Contacto</h4>
+                <p><i class="fa-regular fa-envelope"></i> info@tiendacatalina.com</p>
+                <p><i class="fa-brands fa-whatsapp"></i> +54 9 11 1234-5678</p>
+            </div>
+            
+            <div class="footer-social">
+                <h4>Seguinos</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CATALINA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+    <!-- Cart Sidebar Overlay -->
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-sidebar" id="cart-sidebar">
+            <div class="cart-header">
+                <h2>Tu Bolsa</h2>
+                <button id="close-cart-btn" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="cart-items" id="cart-items-container">
+                <!-- Cart items will be injected here -->
+                <p class="empty-cart-msg">Tu bolsa está vacía.</p>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">$0</span>
+                </div>
+                <button id="empty-cart-btn" class="btn-outline-small">Vaciar Carrito</button>
+                <button id="checkout-btn" class="checkout-btn">
+                    Finalizar compras <i class="fa-brands fa-whatsapp"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
