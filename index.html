@@ -3,126 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Catalina | Elegancia y Estilo</title>
-    <meta name="description" content="E-commerce minimalista y elegante de ropa de mujer y accesorios.">
-    <!-- Google Fonts -->
+    <title>CATALINA. | Moda femenina y accesorios — Tienda online</title>
+    <meta name="description" content="CATALINA.: ropa de mujer, vestidos y accesorios con estilo editorial. Envíos, calidad premium y diseños exclusivos. Descubrí la nueva colección.">
+    <meta name="theme-color" content="#FAF8F4">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.tiendacatalina.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CATALINA. | Moda femenina y accesorios">
+    <meta property="og:description" content="Ropa y accesorios con elegancia atemporal. Nueva colección y envíos a todo el país.">
+    <meta property="og:locale" content="es_UY">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CATALINA. | Moda femenina">
+    <meta name="twitter:description" content="Tienda online de moda femenina y accesorios. Colección exclusiva CATALINA.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 <body>
-    <!-- Navbar -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <header class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">CATALINA.</a>
-            <nav class="nav-links">
-                <a href="index.html" class="active">Inicio</a>
+            <nav class="nav-links" aria-label="Navegación principal">
+                <a href="index.html" class="active" aria-current="page">Inicio</a>
                 <a href="shop.html">Tienda</a>
-                <div class="cart-icon-container" id="open-cart-btn">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span id="cart-badge" class="cart-badge">0</span>
-                </div>
+                <button type="button" class="cart-icon-container" id="open-cart-btn" aria-label="Abrir carrito de compras" aria-expanded="false" aria-controls="cart-sidebar">
+                    <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+                    <span id="cart-badge" class="cart-badge" aria-live="polite" aria-atomic="true">0</span>
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- 1. Hero Section -->
-    <section class="hero hero-index">
-        <div class="hero-content">
-            <h1>Nueva Colección</h1>
-            <p>Elegancia atemporal. Diseños pensados para acompañarte con fluidez y estilo en cada momento de tu día.</p>
-            <a href="shop.html" class="btn-primary">Ver Colección Completa</a>
-        </div>
-    </section>
+    <main id="main-content">
+        <section class="hero hero-index" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <h1 id="hero-title">Nueva Colección</h1>
+                <p>Elegancia atemporal. Diseños pensados para acompañarte con fluidez y estilo en cada momento de tu día.</p>
+                <a href="shop.html" class="btn-primary">Ver Colección Completa</a>
+            </div>
+        </section>
 
-    <!-- 2. Featured Products Section -->
-    <section class="products-section featured-section">
-        <h2 class="section-heading">Nuestros Favoritos</h2>
-        <div class="products-grid" id="featured-container">
-            <!-- Featured products injected by JS -->
-        </div>
-    </section>
+        <section class="products-section featured-section" aria-labelledby="featured-heading">
+            <h2 id="featured-heading" class="section-heading">Nuestros Favoritos</h2>
+            <div class="products-grid" id="featured-container"></div>
+        </section>
 
-    <!-- 3. Banner Visual -->
-    <section class="editorial-banner">
-        <div class="banner-content">
-            <h2>Diseños pensados para vos</h2>
-            <p>Descubre colecciones excepcionales fabricadas con los materiales más nobles.</p>
-            <a href="shop.html" class="btn-outline-white">Explorar Moda</a>
-        </div>
-    </section>
+        <section class="editorial-banner" aria-labelledby="banner-heading">
+            <div class="banner-content">
+                <h2 id="banner-heading">Diseños pensados para vos</h2>
+                <p>Descubre colecciones excepcionales fabricadas con los materiales más nobles.</p>
+                <a href="shop.html" class="btn-outline-white">Explorar Moda</a>
+            </div>
+        </section>
 
-    <!-- 4. Sobre Nosotras -->
-    <section class="about-section">
-        <h2 class="section-heading">Sobre Nosotras</h2>
-        <p>
-            En <strong>CATALINA.</strong>, la moda trasciende las tendencias. Creemos en prendas que cuentan una historia y que se vuelven una extensión de tu identidad femenina. Nuestra cuidada selección de moda se inspira en colores terrosos, la sutileza de la naturaleza y texturas nobles, creadas para la mujer moderna, empoderada y sofisticada. Buscamos siempre el equilibrio perfecto entre comodidad sin comprometer jamás la elegancia.
-        </p>
-    </section>
+        <section class="about-section" aria-labelledby="about-heading">
+            <h2 id="about-heading" class="section-heading">Sobre Nosotras</h2>
+            <p>
+                En <strong>CATALINA.</strong>, la moda trasciende las tendencias. Creemos en prendas que cuentan una historia y que se vuelven una extensión de tu identidad femenina. Nuestra cuidada selección de moda se inspira en colores terrosos, la sutileza de la naturaleza y texturas nobles, creadas para la mujer moderna, empoderada y sofisticada. Buscamos siempre el equilibrio perfecto entre comodidad sin comprometer jamás la elegancia.
+            </p>
+        </section>
 
-    <!-- 5. Beneficios -->
-    <section class="benefits-section">
-        <div class="benefit-item">
-            <i class="fa-solid fa-truck-fast"></i>
-            <h3>Envíos a todo el país</h3>
-            <p>Llevamos tu pedido a la puerta de tu casa.</p>
-        </div>
-        <div class="benefit-item">
-            <i class="fa-solid fa-headset"></i>
-            <h3>Atención Personalizada</h3>
-            <p>Te asesoramos en cada paso de tu compra.</p>
-        </div>
-        <div class="benefit-item">
-            <i class="fa-solid fa-star"></i>
-            <h3>Calidad Premium</h3>
-            <p>Trabajamos con telas de la más alta calidad.</p>
-        </div>
-        <div class="benefit-item">
-            <i class="fa-solid fa-gem"></i>
-            <h3>Diseños Exclusivos</h3>
-            <p>Prendas únicas pensadas para destacar.</p>
-        </div>
-    </section>
+        <section class="benefits-section" aria-label="Beneficios de comprar en CATALINA.">
+            <div class="benefit-item">
+                <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+                <h3>Envíos a todo el país</h3>
+                <p>Llevamos tu pedido a la puerta de tu casa.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fa-solid fa-headset" aria-hidden="true"></i>
+                <h3>Atención Personalizada</h3>
+                <p>Te asesoramos en cada paso de tu compra.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fa-solid fa-star" aria-hidden="true"></i>
+                <h3>Calidad Premium</h3>
+                <p>Trabajamos con telas de la más alta calidad.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fa-solid fa-gem" aria-hidden="true"></i>
+                <h3>Diseños Exclusivos</h3>
+                <p>Prendas únicas pensadas para destacar.</p>
+            </div>
+        </section>
 
-    <!-- 6. Call To Action Final -->
-    <section class="cta-final">
-        <h2>Renová tu estilo</h2>
-        <p>Descubrí nuestra colección y encontrá el diseño perfecto para brillar.</p>
-        <a href="shop.html" class="btn-primary">Ir a la tienda</a>
-    </section>
+        <section class="cta-final" aria-labelledby="cta-heading">
+            <h2 id="cta-heading">Renová tu estilo</h2>
+            <p>Descubrí nuestra colección y encontrá el diseño perfecto para brillar.</p>
+            <a href="shop.html" class="btn-primary">Ir a la tienda</a>
+        </section>
+    </main>
 
-    <!-- 7. Footer Completo -->
     <footer class="main-footer">
         <div class="footer-grid">
             <div class="footer-brand">
-                <a href="#" class="logo">CATALINA.</a>
+                <a href="index.html" class="logo">CATALINA.</a>
                 <p>Elegancia y frescura para tu vida cotidiana.</p>
             </div>
-            
-            <div class="footer-links">
-                <h4>Navegación</h4>
+
+            <nav class="footer-links" aria-label="Enlaces del pie">
+                <h3>Navegación</h3>
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="shop.html">Nuestra Tienda</a></li>
                     <li><a href="#" id="open-cart-footer">Mi Carrito</a></li>
                 </ul>
-            </div>
-            
+            </nav>
+
             <div class="footer-contact">
-                <h4>Contacto</h4>
-                <p><i class="fa-regular fa-envelope"></i> info@tiendacatalina.com</p>
-                <p><i class="fa-brands fa-whatsapp"></i> +54 9 11 1234-5678</p>
+                <h3>Contacto</h3>
+                <p><i class="fa-regular fa-envelope" aria-hidden="true"></i> <a href="mailto:info@tiendacatalina.com">info@tiendacatalina.com</a></p>
+                <p><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <a href="https://wa.me/59898052646">+598 98 052 646</a></p>
             </div>
-            
+
             <div class="footer-social">
-                <h4>Seguinos</h4>
+                <h3>Seguinos</h3>
                 <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                    <a href="https://www.instagram.com/" rel="noopener noreferrer" target="_blank" aria-label="Instagram — abre en una pestaña nueva"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/" rel="noopener noreferrer" target="_blank" aria-label="Facebook — abre en una pestaña nueva"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://www.pinterest.com/" rel="noopener noreferrer" target="_blank" aria-label="Pinterest — abre en una pestaña nueva"><i class="fa-brands fa-pinterest" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -131,35 +133,34 @@
         </div>
     </footer>
 
-    <!-- Cart Sidebar Overlay -->
-    <div class="cart-overlay" id="cart-overlay">
+    <div class="cart-overlay" id="cart-overlay" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
         <div class="cart-sidebar" id="cart-sidebar">
             <div class="cart-header">
-                <h2>Tu Bolsa</h2>
-                <button id="close-cart-btn" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+                <h2 id="cart-title">Tu Bolsa</h2>
+                <button type="button" id="close-cart-btn" class="close-btn" aria-label="Cerrar carrito">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
             </div>
-            
+
             <div class="cart-items" id="cart-items-container">
-                <!-- Cart items will be injected here -->
                 <p class="empty-cart-msg">Tu bolsa está vacía.</p>
             </div>
-            
+
             <div class="cart-footer">
                 <div class="cart-total">
                     <span>Total:</span>
-                    <span id="cart-total-price">$0</span>
+                    <span id="cart-total-price" aria-live="polite" aria-atomic="true">$0</span>
                 </div>
-                <button id="empty-cart-btn" class="btn-outline-small">Vaciar Carrito</button>
-                <button id="checkout-btn" class="checkout-btn">
-                    Finalizar compras <i class="fa-brands fa-whatsapp"></i>
+                <button type="button" id="empty-cart-btn" class="btn-outline-small">Vaciar carrito</button>
+                <button type="button" id="checkout-btn" class="checkout-btn">
+                    Finalizar compra por WhatsApp <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="js/products.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>

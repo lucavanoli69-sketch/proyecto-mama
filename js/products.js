@@ -1,8 +1,8 @@
 /**
  * Products Data File
- * 
- * Este archivo simula nuestra base de datos.
- * Exportamos la lista de manera global para que `main.js` y `cart.js` puedan leerla.
+ *
+ * Opcional por producto: `imageWebp: "images/archivo.webp"` para servir WebP con <picture>
+ * (mejor puntaje Lighthouse cuando exista el archivo).
  */
 
 const products = [
