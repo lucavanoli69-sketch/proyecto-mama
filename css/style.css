@@ -186,8 +186,8 @@ h1, h2, h3, .logo {
     min-height: 600px;
     background-color: var(--color-primary);
     
-    /* Default (Mobile First): Use hero.jfif */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/hero.jfif');
+    /* Default (Mobile First): Use heromobile.webp */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/heromobile.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -205,8 +205,8 @@ h1, h2, h3, .logo {
 /* Hero Section Desktop Media Query */
 @media (min-width: 768px) {
     .hero-index {
-        /* Desktop: Use herodesktop.jfif to avoid pixelation */
-        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/herodesktop.jfif');
+        /* Desktop: Use herodesktop.jpg for large screens */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/herodesktop.jpg');
     }
 }
 
@@ -281,9 +281,8 @@ h1, h2, h3, .logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/banner.jfif') center/cover fixed no-repeat;
-    /* fallback */
-    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/banner.jpg') center/cover fixed no-repeat, url('../images/banner.jfif') center/cover fixed no-repeat;
+    /* Parallax effect with fixed background */
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/banner.webp') center/cover fixed no-repeat;
 }
 
 .banner-content {
@@ -546,6 +545,7 @@ h1, h2, h3, .logo {
     line-height: 1.55;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
