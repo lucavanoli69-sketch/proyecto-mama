@@ -342,4 +342,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderProducts();
     renderCart();
+
+    /* Editorial banner: revelado de imagen al scroll (overlay translateY) */
+    const editorialBanner = document.querySelector('.editorial-banner');
+    const editorialRevealOverlay = editorialBanner?.querySelector('.editorial-banner__reveal-overlay');
+    let editorialRevealRaf = 0;
+
+    function updateEditorialBannerReveal() {
+        editorialRevealRaf = 0;
+        if (!editorialBanner || !editorialRevealOverlay) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            editorialRevealOverlay.style.transform = 'translate3d(0, -100%, 0)';
+            return;
+        }
+        const rect = editorialBanner.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        const start = vh * 0.9;
+        const end = Math.max(vh * 0.22, 100);
+        let progress = (start - rect.top) / (start - end);
+        progress = Math.max(0, Math.min(1, progress));
+        editorialRevealOverlay.style.transform = `translate3d(0, ${-100 * progress}%, 0)`;
+    }
+
+    function requestEditorialBannerReveal() {
+        if (editorialRevealRaf) return;
+        editorialRevealRaf = requestAnimationFrame(updateEditorialBannerReveal);
+    }
+
+    if (editorialBanner && editorialRevealOverlay) {
+        window.addEventListener('scroll', requestEditorialBannerReveal, { passive: true });
+        window.addEventListener('resize', requestEditorialBannerReveal, { passive: true });
+        updateEditorialBannerReveal();
+    }
 });
