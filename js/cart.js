@@ -122,3 +122,4 @@ function checkoutWhatsApp() {
 
     window.open(whatsappUrl, '_blank');
 }
+

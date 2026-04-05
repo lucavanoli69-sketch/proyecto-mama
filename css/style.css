@@ -3,8 +3,8 @@
     --color-primary: #D5C4A1;
     --color-bg: #FAF8F4;
     --color-surface: #FFFFFF;
-    --color-text-dark: #2F2D2B;
-    --color-text-light: #5A5652;
+    --color-text-dark: #353330;
+    --color-text-light: #7A7670;
     --color-border: #EDEAE3;
     --color-border-strong: #E0DBD2;
     --color-wash: rgba(53, 51, 48, 0.04);
@@ -34,41 +34,6 @@
     --content-max: 1180px;
     --section-pad-y: clamp(3.75rem, 10vw, 6.5rem);
     --section-gap: clamp(4.5rem, 11vw, 8.5rem);
-    --hero-min-height: 80vh;
-    --editorial-banner-min-height: clamp(22rem, 65vh, 72vh);
-}
-
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.skip-link {
-    position: absolute;
-    left: -9999px;
-    top: 0.75rem;
-    z-index: 10001;
-    padding: 0.65rem 1.1rem;
-    background: var(--color-text-dark);
-    color: var(--color-surface);
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition: var(--transition);
-}
-
-.skip-link:focus {
-    left: 0.75rem;
-    outline: 2px solid var(--color-surface);
-    outline-offset: 2px;
 }
 
 * {
@@ -106,7 +71,7 @@ h1, h2, h3, .logo {
 }
 
 .featured-section {
-    margin-top: clamp(2rem, 5vw, 4rem);
+    margin-top: var(--section-gap);
     margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 
@@ -188,16 +153,6 @@ h1, h2, h3, .logo {
     margin-right: -0.5rem;
     border-radius: var(--radius-sm);
     transition: var(--transition);
-    background: none;
-    border: none;
-    font-family: inherit;
-    color: var(--color-text-light);
-    line-height: 1;
-}
-
-.cart-icon-container:focus-visible {
-    outline: 2px solid var(--color-text-dark);
-    outline-offset: 2px;
 }
 
 .cart-icon-container:hover {
@@ -222,99 +177,63 @@ h1, h2, h3, .logo {
     justify-content: center;
 }
 
-/* 1. Hero — heroreal.jpg (ruta desde css/style.css → ../images/) */
+/* 1. Hero Section */
 .hero-index {
     position: relative;
-    isolation: isolate;
-    overflow: hidden;
+    text-align: center;
+    padding: 0 var(--page-gutter);
+    height: 90vh; /* 90 height for massive impact */
+    min-height: 600px;
     background-color: var(--color-primary);
-    background-image: url('../images/heroreal.jpg');
+    
+    /* Default (Mobile First): Use hero.jfif */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/hero.jfif');
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
-    color: #fff;
+    
+    /* Transition for smooth background toggle when resizing */
+    transition: background-image 0.5s ease-in-out;
+    
+    color: white;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-    min-height: var(--hero-min-height);
-    min-height: 100dvh;
-    height: 100vh;
-}
-
-.hero-index::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 0;
-    pointer-events: none;
-}
-
-.hero-inner {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: var(--content-max);
-    margin: 0 auto;
-    padding-top: clamp(4.5rem, calc(var(--section-pad-y) + 2.25rem), 7rem);
-    padding-bottom: var(--section-pad-y);
-    padding-left: var(--page-gutter);
-    padding-right: var(--page-gutter);
-    display: flex;
-    justify-content: center;
     align-items: center;
-    flex: 1;
-    min-height: 0;
+    justify-content: center;
+}
+
+/* Hero Section Desktop Media Query */
+@media (min-width: 768px) {
+    .hero-index {
+        /* Desktop: Use herodesktop.jfif to avoid pixelation */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/herodesktop.jfif');
+    }
 }
 
 .hero-content {
-    text-align: center;
     max-width: 820px;
-    width: 100%;
-    margin: 0 auto;
+    z-index: 2;
+    padding: 0 0.5rem;
 }
 
 .hero-content h1 {
     font-family: var(--font-heading);
-    font-size: clamp(2.75rem, 7vw, 5rem);
+    font-size: clamp(3rem, 8vw, 5.25rem);
     font-weight: 400;
-    margin: 0 0 1.15rem;
+    margin-bottom: 1.35rem;
     letter-spacing: 0.02em;
-    line-height: 1.06;
-    text-shadow: 0 2px 28px rgba(0, 0, 0, 0.35);
+    line-height: 1.08;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.22);
 }
 
-.hero-subtitle {
+.hero-content p {
     font-family: var(--font-body);
-    font-size: clamp(1.02rem, 2.1vw, 1.25rem);
-    margin: 0 auto 2rem;
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    margin: 0 auto 2.75rem;
     font-weight: 300;
     line-height: 1.65;
     max-width: 34em;
-    color: rgba(255, 255, 255, 0.94);
-    text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
-}
-
-@media (min-width: 768px) {
-    .hero-index {
-        min-height: var(--hero-min-height);
-        min-height: 80dvh;
-        height: auto;
-    }
-}
-
-/* Encuadre en pantallas altas estrechas (evita cortar el sujeto arriba) */
-@media (max-width: 767px) {
-    .hero-index {
-        background-position: center 28%;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-index {
-        background-position: center 22%;
-    }
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary {
@@ -358,50 +277,18 @@ h1, h2, h3, .logo {
     margin: var(--section-gap) 0;
     padding: var(--section-pad-y) var(--page-gutter);
     text-align: center;
-    min-height: var(--editorial-banner-min-height);
+    min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-        image-set(
-            url('../images/banner.webp') type('image/webp'),
-            url('../images/banner.jfif') type('image/jpeg')
-        );
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    overflow: hidden;
-}
-
-/* Scroll reveal: overlay claro que se desliza hacia arriba al entrar en vista */
-.editorial-banner__reveal-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background: linear-gradient(
-        165deg,
-        rgba(250, 248, 244, 0.98) 0%,
-        rgba(250, 248, 244, 0.92) 38%,
-        rgba(237, 234, 227, 0.82) 72%,
-        rgba(213, 196, 161, 0.35) 100%
-    );
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .editorial-banner__reveal-overlay {
-        transform: translate3d(0, -100%, 0) !important;
-    }
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/banner.jfif') center/cover fixed no-repeat;
+    /* fallback */
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/banner.jpg') center/cover fixed no-repeat, url('../images/banner.jfif') center/cover fixed no-repeat;
 }
 
 .banner-content {
     color: white;
     max-width: 700px;
-    position: relative;
     z-index: 2;
 }
 
@@ -545,8 +432,8 @@ h1, h2, h3, .logo {
 /* Products Section (Shop Page / Featured) */
 .products-section {
     max-width: var(--content-max);
-    margin: var(--section-gap) auto;
-    padding: var(--section-pad-y) var(--page-gutter);
+    margin: var(--section-gap) auto var(--section-gap);
+    padding: 0 var(--page-gutter);
 }
 
 .page-title {
@@ -554,7 +441,7 @@ h1, h2, h3, .logo {
     text-align: center;
     font-size: clamp(2.65rem, 6vw, 3.85rem);
     font-weight: 400;
-    margin: 0 0 clamp(2rem, 5vw, 3.25rem);
+    margin: clamp(2.5rem, 6vw, 4rem) 0 clamp(2.5rem, 5vw, 3.75rem);
     font-style: italic;
     color: var(--color-text-dark);
     letter-spacing: 0.01em;
@@ -690,7 +577,7 @@ h1, h2, h3, .logo {
     cursor: pointer;
     transition: var(--transition-btn);
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235A5652' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6865' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     padding-right: 2rem;
@@ -765,9 +652,9 @@ h1, h2, h3, .logo {
     font-size: 1rem;
 }
 
-.footer-links h3,
-.footer-contact h3,
-.footer-social h3 {
+.footer-links h4,
+.footer-contact h4,
+.footer-social h4 {
     font-family: var(--font-heading);
     font-size: 1.2rem;
     color: var(--color-text-dark);
@@ -795,18 +682,6 @@ h1, h2, h3, .logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-.footer-contact a {
-    color: inherit;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.footer-contact a:hover {
-    color: var(--color-text-dark);
-    text-decoration: underline;
-    text-underline-offset: 3px;
 }
 
 .social-icons {
@@ -944,11 +819,8 @@ h1, h2, h3, .logo {
 }
 
 .cart-item-title {
-    margin: 0;
     font-size: 0.95rem;
-    font-weight: 400;
     font-family: var(--font-heading);
-    line-height: 1.3;
 }
 
 .cart-item-price {
@@ -1061,12 +933,6 @@ h1, h2, h3, .logo {
     outline-offset: 3px;
 }
 
-.checkout-btn:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
 .btn-outline-small {
     width: 100%;
     padding: 0.65rem 0.75rem;
@@ -1117,23 +983,18 @@ h1, h2, h3, .logo {
         gap: 1rem;
     }
     .hero-index {
-        min-height: var(--hero-min-height);
-        min-height: 80dvh;
+        padding: 6rem var(--page-gutter);
+        min-height: 50vh;
         height: auto;
     }
-    .hero-inner {
-        padding-top: clamp(4.25rem, calc(var(--section-pad-y) + 1.75rem), 6rem);
-        padding-bottom: var(--section-pad-y);
-    }
     .hero-content h1 {
-        font-size: clamp(2.35rem, 9vw, 3.15rem);
+        font-size: clamp(2.5rem, 10vw, 3.25rem);
     }
     .cart-sidebar {
         max-width: 85%;
     }
     .editorial-banner {
-        min-height: clamp(18rem, 58vh, 65vh);
-        padding: var(--section-pad-y) var(--page-gutter);
+        padding: clamp(3.75rem, 12vw, 5rem) var(--page-gutter);
         margin: var(--section-gap) 0;
     }
 
@@ -1151,3 +1012,4 @@ h1, h2, h3, .logo {
         margin-bottom: 3.25rem;
     }
 }
+
