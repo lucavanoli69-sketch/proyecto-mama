@@ -93,7 +93,7 @@ function getCartTotalPrice() {
  * Uruguay: 598 + celular sin el 0 inicial (ej. 098 052 646 → 59898052646).
  * Cambiá este valor si usás otro número.
  */
-const WHATSAPP_BUSINESS_NUMBER = '59898052646';
+const WHATSAPP_BUSINESS_NUMBER = '59892335165';
 
 /**
  * Genera el mensaje de WhatsApp y redirige
