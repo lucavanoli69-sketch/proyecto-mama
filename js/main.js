@@ -32,28 +32,51 @@ document.addEventListener('DOMContentLoaded', () => {
         // Size Selector HTML
         let sizeSelectorHTML = '';
         if (product.sizes && product.sizes.length > 0) {
-            const options = product.sizes.map(size => `<option value="${size}">${size}</option>`).join('');
-            sizeSelectorHTML = `
-                <div class="size-selector">
-                    <select id="size-${product.id}">
-                        ${options}
-                    </select>
-                </div>
+            if (product.sizes.length === 1) {
+                sizeSelectorHTML = `<p class="size-single">Talle único</p>`;
+            } else {
+                const options = product.sizes.map(size => `<option value="${size}">${size}</option>`).join('');
+                sizeSelectorHTML = `
+                    <div class="size-selector">
+                        <select id="size-${product.id}">
+                            ${options}
+                        </select>
+                    </div>
+                `;
+            }
+        }
+
+        let imageHTML = `<img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=${encodeURIComponent(product.name)}'">`;
+        if (product.hoverImage) {
+            imageHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image main-img" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=${encodeURIComponent(product.name)}'">
+                <img src="${product.hoverImage}" alt="${product.name} hover" class="product-image hover-img" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=${encodeURIComponent(product.name)}'">
+            `;
+        }
+
+        let buttonHTML = `
+            <button class="add-to-cart-btn" onclick="handleAddToCart(${product.id})">
+                Agregar al carrito
+            </button>
+        `;
+        if (product.stock === 0) {
+            buttonHTML = `
+                <button class="add-to-cart-btn disabled" disabled>
+                    Sin stock
+                </button>
             `;
         }
 
         card.innerHTML = `
-            <div class="product-image-container">
-                <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=${encodeURIComponent(product.name)}'">
+            <div class="product-image-container" onclick="openProductModal(${product.id})" style="cursor:pointer;">
+                ${imageHTML}
             </div>
             <div class="product-info">
-                <h3 class="product-title">${product.name}</h3>
+                <h3 class="product-title" onclick="openProductModal(${product.id})" style="cursor:pointer;" title="Ver detalles">${product.name}</h3>
                 <p class="product-desc">${product.description}</p>
                 <div class="product-price">${formatPrice(product.price)}</div>
                 ${sizeSelectorHTML}
-                <button class="add-to-cart-btn" onclick="handleAddToCart(${product.id})">
-                    Agregar al carrito
-                </button>
+                ${buttonHTML}
             </div>
         `;
         return card;
@@ -195,4 +218,147 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial render
     renderProducts();
     renderCart();
+
+    // Modal Injection & Logic
+    function injectModal() {
+        const modalHTML = `
+            <div class="modal-overlay" id="product-modal">
+                <div class="modal-content">
+                    <button class="close-modal-btn" id="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="modal-body" id="modal-body-container">
+                        <!-- JS Content -->
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+        const modalDiv = document.getElementById('product-modal');
+        const closeBtn = document.getElementById('close-modal-btn');
+        
+        closeBtn.addEventListener('click', () => {
+            modalDiv.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        modalDiv.addEventListener('click', (e) => {
+            if (e.target === modalDiv) {
+                modalDiv.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    injectModal();
+
+    window.changeModalImage = function(src) {
+        const mainImg = document.getElementById('modal-main-image');
+        if (mainImg) mainImg.src = src;
+    };
+
+    window.handleAddToCartModal = function(productId) {
+        const productData = products.find(p => p.id === productId);
+        let selectedSize = null;
+
+        if (productData && productData.sizes && productData.sizes.length > 0) {
+            if (productData.sizes.length > 1) {
+                const sizeSelect = document.getElementById(`modal-size-${productId}`);
+                if (sizeSelect) selectedSize = sizeSelect.value;
+            } else {
+                 selectedSize = productData.sizes[0];
+            }
+        }
+
+        addToCart(productId, selectedSize);
+        document.getElementById('product-modal').classList.remove('active');
+        openCart();
+    };
+
+    window.openProductModal = function(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+
+        const modalDiv = document.getElementById('product-modal');
+        const modalContainer = document.getElementById('modal-body-container');
+        
+        // Gallery or single image
+        let galleryHTML = '';
+        if (product.gallery && product.gallery.length > 0) {
+            const thumbnails = product.gallery.map(img => `
+                <div class="thumbnail-wrapper" onclick="changeModalImage('${img}')">
+                    <img src="${img}" alt="Thumbnail" class="modal-thumbnail" loading="lazy" onerror="this.src='https://placehold.co/100x100?text=Error'">
+                </div>
+            `).join('');
+            galleryHTML = `
+                <div class="modal-gallery-container">
+                    <div class="modal-main-img-container">
+                        <img src="${product.gallery[0]}" id="modal-main-image" class="modal-main-image" alt="${product.name}" onerror="this.src='https://placehold.co/500x600?text=${encodeURIComponent(product.name)}'">
+                    </div>
+                    <div class="modal-thumbnails">
+                        ${thumbnails}
+                    </div>
+                </div>
+            `;
+        } else {
+            galleryHTML = `
+                <div class="modal-gallery-container has-single-image">
+                    <div class="modal-main-img-container">
+                        <img src="${product.image}" id="modal-main-image" class="modal-main-image" alt="${product.name}" onerror="this.src='https://placehold.co/500x600?text=${encodeURIComponent(product.name)}'">
+                    </div>
+                </div>
+            `;
+        }
+
+        // Features
+        let featuresHTML = '';
+        if (product.features && product.features.length > 0) {
+            const items = product.features.map(f => `<li>${f}</li>`).join('');
+            featuresHTML = `
+                <ul class="modal-features">
+                    ${items}
+                </ul>
+            `;
+        }
+
+        // Size
+        let sizeSelectorHTML = '';
+        if (product.sizes && product.sizes.length > 0) {
+            if (product.sizes.length === 1) {
+                sizeSelectorHTML = `<p class="size-single-modal">Talle: <strong>Único</strong></p>`;
+            } else {
+                const options = product.sizes.map(size => `<option value="${size}">${size}</option>`).join('');
+                sizeSelectorHTML = `
+                    <div class="size-selector modal-size-selector">
+                        <select id="modal-size-${product.id}">
+                            ${options}
+                        </select>
+                    </div>
+                `;
+            }
+        }
+
+        // Button
+        let buttonHTML = `<button class="add-to-cart-btn btn-modal" onclick="handleAddToCartModal(${product.id})">Agregar al carrito</button>`;
+        if (product.stock === 0) {
+            buttonHTML = `<button class="add-to-cart-btn btn-modal disabled" disabled>Sin stock</button>`;
+        }
+
+        modalContainer.innerHTML = `
+            ${galleryHTML}
+            <div class="modal-info-container">
+                <h2 class="modal-title">${product.name}</h2>
+                <div class="modal-price">${formatPrice(product.price)}</div>
+                <p class="modal-desc">${product.description}</p>
+                ${featuresHTML}
+                <div class="modal-action-area">
+                    ${sizeSelectorHTML}
+                    ${buttonHTML}
+                </div>
+            </div>
+        `;
+
+        modalDiv.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
 });

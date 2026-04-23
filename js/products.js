@@ -41,6 +41,31 @@ const products = [
         image: "images/summer_hat.png",
         description: "Sombrero de ala ancha con textura fina y cinta acentuadora. Protección con estilo.",
         sizes: ["Único"]
+    },
+    {
+        id: 5,
+        name: "Saco Antonia",
+        category: "ropa",
+        price: 4200,
+        image: "images/saco-antonia.jpeg",
+        hoverImage: "images/saco-antonia-modelo.jpeg",
+        gallery: [
+            "images/saco-antonia.jpeg",
+            "images/saco-antonia-modelo.jpeg",
+            "images/saco-antonia-espalda.jpeg"
+        ],
+        description: "Saco largo estampado de calce relajado, ideal para media estación. Una prenda protagonista y versátil que acompaña looks cotidianos con identidad y comodidad.",
+        features: [
+            "Largo midi",
+            "Calce relajado",
+            "Manga larga recta",
+            "Cuello amplio con solapa",
+            "Estampa floral en tonos negro, visón y verde oliva",
+            "Tela liviana con buena caída",
+            "Ideal para media estación"
+        ],
+        sizes: ["Único"],
+        stock: 5
     }
 ];
 
